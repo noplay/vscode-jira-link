@@ -49,7 +49,7 @@ class JiraLinkController {
 
 class JiraLink {
     private _statusBarItem: StatusBarItem =  window.createStatusBarItem(StatusBarAlignment.Left);
-    private _jiraregex: RegExp = RegExp(".*([A-Z0-9]+-[0-9]+).*");
+    private _jiraregex: RegExp = RegExp("^([A-Z0-9]+-[0-9]+).*");
     private _git : API;
 
     constructor(context: ExtensionContext, git: API) {
