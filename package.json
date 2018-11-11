@@ -4,6 +4,11 @@
     "description": "Display a link to your JIRA issue based on the name of your git branch.",
     "version": "0.9.0",
     "publisher": "jduponchelle",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/noplay/vscode-jira-link.git"
+    },
     "engines": {
         "vscode": "^1.28.0"
     },

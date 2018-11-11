@@ -5,7 +5,7 @@ a link in the status bar.
 
 The detection of the issue use the current git branch name.
 
-\!\[Status bar\]\(images/1.png\)
+![Status bar](images/1.png)
 
 ## Extension Settings
 
