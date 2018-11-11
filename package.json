@@ -1,0 +1,51 @@
+{
+    "name": "jira-link",
+    "displayName": "JIRA Link",
+    "description": "Display a link to your JIRA issue based on the name of your git branch.",
+    "version": "0.9.0",
+    "publisher": "jduponchelle",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "jira"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "extensionDependencies": [
+        "vscode.git"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration": {
+            "title": "JIRA Link",
+            "properties": {
+              "jiraLink.instanceUrl": {
+                "type": "string",
+                "default": null,
+                "description": "Your JIRA instance URL"
+              }
+            }
+        }
+    },
+    "bugs": {
+        "url": "https://github.com/noplay/vscode-jira-link/issues"
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25"
+    }
+}
