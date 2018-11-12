@@ -2,7 +2,7 @@
     "name": "jira-link",
     "displayName": "JIRA Link",
     "description": "Display a link to your JIRA issue based on the name of your git branch.",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "publisher": "jduponchelle",
     "license": "Apache-2.0",
     "repository": {

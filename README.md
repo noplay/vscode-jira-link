@@ -10,6 +10,10 @@ name need to be prefixed by the JIRA issue.
 
 ![Status bar](images/1.png)
 
+## Change log
+
+See [Change log](CHANGELOG.md)
+
 ## Extension Settings
 
 This extension contributes the following settings:
