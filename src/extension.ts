@@ -4,7 +4,7 @@ import {
     window, ExtensionContext,
     Disposable, extensions,
     commands, Uri, workspace,
-    StatusBarAlignment, StatusBarItem,
+    StatusBarAlignment, StatusBarItem, TextEditor,
 } from 'vscode';
 
 import {GitExtension, API} from './git';
@@ -75,14 +75,11 @@ class JiraLink {
             return null;
         }
 
-        let issue = await this.getIssue();
-        if (issue) {
-            return instanceUrl + '/browse/' + issue;
-        }
+        return instanceUrl + '/browse/' + this._statusBarItem.tooltip;
     }
 
-    private async getIssue() {
-        let branch = await this.getBranch();
+    private async getIssue(editor: TextEditor) {
+        let branch = await this.getBranch(editor);
         if (branch) {
             let search = this._jiraregex.exec(branch);
             if (search) {
@@ -93,11 +90,14 @@ class JiraLink {
         return null;
     }
 
-    private async getBranch() {
+    private async getBranch(editor: TextEditor) {
         const repositories = this._git.repositories;
-        if (repositories.length) {
-            let branch = await repositories[0].getBranch('HEAD');
-            return branch.name;
+        for (let repository of repositories) {
+            let path = editor.document.uri.toString();
+            if (path.startsWith(repository.rootUri.toString())) {
+                let branch = await repository.getBranch('HEAD');
+                return branch.name;
+            }
         }
 
         return null;
@@ -109,9 +109,10 @@ class JiraLink {
             this._statusBarItem.hide();
             return;
         }
-        let issue = await this.getIssue();
+        let issue = await this.getIssue(editor);
         if (issue) {
             this._statusBarItem.text = "JIRA: " + issue;
+            this._statusBarItem.tooltip = issue; // Use to create the link when user click
             this._statusBarItem.show();
         }
         else {
