@@ -31,7 +31,13 @@ class JiraLinkController {
 
         let subscriptions: Disposable[] = [];
         window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
-        git.onDidOpenRepository(this._onEvent, this, subscriptions);
+        git.onDidOpenRepository((repository) => {
+            repository.state.onDidChange(this._onEvent, this, subscriptions);
+            this._jiraLink.update();
+        }, this, subscriptions);
+        for (let repository of git.repositories) {
+            repository.state.onDidChange(this._onEvent, this, subscriptions);
+        }
 
         this._jiraLink.update();
 

@@ -3,6 +3,7 @@
 ## 0.9.1
 
 - Support workspace with multiple repositories
+- React to git branch change
 
 ## 0.9.0
 
