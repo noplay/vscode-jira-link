@@ -2,9 +2,10 @@
     "name": "jira-link",
     "displayName": "JIRA Link",
     "description": "Display a link to your JIRA issue based on the name of your git branch.",
-    "version": "0.9.1",
+    "version": "0.9.2",
     "publisher": "jduponchelle",
     "license": "Apache-2.0",
+    "icon": "images/icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/noplay/vscode-jira-link.git"
