@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.0
+
+- Allow to configure the regexp
+
 ## 0.9.3
 
 - Upgrade to last dependencies

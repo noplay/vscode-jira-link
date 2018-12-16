@@ -19,3 +19,4 @@ See [Change log](CHANGELOG.md)
 This extension contributes the following settings:
 
 * `jiraLink.instanceUrl`: Set the base url of your JIRA instance
+* `jiraLink.ticketRegexp`: Regexp for matching ticket number

@@ -2,7 +2,7 @@
     "name": "jira-link",
     "displayName": "JIRA Link",
     "description": "Display a link to your JIRA issue based on the name of your git branch.",
-    "version": "0.9.3",
+    "version": "1.0.0",
     "publisher": "jduponchelle",
     "license": "Apache-2.0",
     "icon": "images/icon.png",
@@ -34,6 +34,11 @@
                     "type": "string",
                     "default": null,
                     "description": "Your JIRA instance URL"
+                },
+                "jiraLink.ticketRegexp": {
+                    "type": "string",
+                    "default": "^([A-Z0-9]+-[0-9]+).*",
+                    "description": "Regexp for matching ticket number"
                 }
             }
         }

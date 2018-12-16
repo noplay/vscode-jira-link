@@ -4,7 +4,7 @@ import {
     window, ExtensionContext,
     Disposable, extensions,
     commands, Uri, workspace,
-    StatusBarAlignment, StatusBarItem, TextEditor,
+    StatusBarAlignment, StatusBarItem, TextEditor, ConfigurationChangeEvent,
 } from 'vscode';
 
 import {GitExtension, API} from './git';
@@ -55,15 +55,28 @@ class JiraLinkController {
 
 class JiraLink {
     private _statusBarItem: StatusBarItem =  window.createStatusBarItem(StatusBarAlignment.Left);
-    private _jiraregex: RegExp = RegExp("^([A-Z0-9]+-[0-9]+).*");
+    private _jiraregex: RegExp;
     private _git : API;
 
     constructor(context: ExtensionContext, git: API) {
+        let subscriptions: Disposable[] = [];
+
+        const { ticketRegexp } = workspace.getConfiguration('jiraLink');
+        this._jiraregex = RegExp(ticketRegexp);
         this._git = git;
+
+        workspace.onDidChangeConfiguration(this.updateSettings, this, subscriptions);
         this._statusBarItem.command = 'extension.openJiraIssue';
         context.subscriptions.push(commands.registerCommand('extension.openJiraIssue', () => {
             this.openJira();
         }));
+    }
+    private updateSettings(event: ConfigurationChangeEvent) {
+        console.log("Settings");
+        if (event.affectsConfiguration('jiraLink')) {
+            const { ticketRegexp } = workspace.getConfiguration('jiraLink');
+            this._jiraregex = RegExp(ticketRegexp);
+        }
     }
 
     private async openJira() {
