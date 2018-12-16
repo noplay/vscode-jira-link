@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.9.3
+
+- Upgrade to last dependencies
+
 ## 0.9.2
 
 - Add a logo
